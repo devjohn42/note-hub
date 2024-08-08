@@ -1,6 +1,6 @@
 export enum ColumnType {
   TO_DO = 'Todo',
-  IN_PROGRESS = 'In Progress',
+  IN_PROGRESS = 'In_Progress',
   COMPLETED = 'Completed',
   BLOCKED = 'Blocked',
 }
