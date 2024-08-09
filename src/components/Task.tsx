@@ -1,15 +1,20 @@
 import { DeleteIcon } from '@chakra-ui/icons';
 import { Box, IconButton, Textarea, useColorModeValue } from '@chakra-ui/react';
 import { TaskModel } from '../utils/models';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, ChangeEvent } from 'react';
 
 type TaskProps = {
   index: number;
   task: TaskModel;
+  onUpdate: (id: TaskModel['id'], updateTask: TaskModel) => void;
 };
 
-const Task = ({ index, task }: TaskProps) => {
+const Task = ({ index, task, onUpdate: handleUpdate }: TaskProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const newTitle = e.target.value;
+    handleUpdate(task.id, { ...task, title: newTitle });
+  };
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -57,6 +62,7 @@ const Task = ({ index, task }: TaskProps) => {
         h="auto"
         focusBorderColor="transparent"
         color={useColorModeValue('#2D2F2F', '#e3edf7')}
+        onChange={handleTitleChange}
       />
     </Box>
   );

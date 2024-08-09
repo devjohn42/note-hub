@@ -34,9 +34,28 @@ const useColumnTasks = (column: ColumnType) => {
     });
   }, [column, setTasks]);
 
+  const updateTask = useCallback(
+    (id: TaskModel['id'], updateTask: Omit<Partial<TaskModel>, 'id'>) => {
+      console.info(`Updating task ${id} with ${JSON.stringify(updateTask)}`);
+
+      setTasks((allTasks) => {
+        const columnTasks = allTasks[column];
+
+        return {
+          ...allTasks,
+          [column]: columnTasks.map((task) =>
+            task.id === id ? { ...task, ...updateTask } : task,
+          ),
+        };
+      });
+    },
+    [column, setTasks],
+  );
+
   return {
     tasks: tasks[column],
     addTask,
+    updateTask,
   };
 };
 
