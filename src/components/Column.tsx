@@ -19,7 +19,7 @@ const ColumnsColorScheme: Record<ColumnType, string> = {
 };
 
 const Column = ({ column }: { column: ColumnType }) => {
-  const { tasks, addTask, updateTask } = useColumnTasks(column);
+  const { tasks, addTask, updateTask, deleteTask } = useColumnTasks(column);
 
   return (
     <Box>
@@ -59,7 +59,13 @@ const Column = ({ column }: { column: ColumnType }) => {
         overflow="auto"
       >
         {tasks.map((task, index) => (
-          <Task key={task.id} task={task} index={index} onUpdate={updateTask} />
+          <Task
+            key={task.id}
+            task={task}
+            index={index}
+            onUpdate={updateTask}
+            onDelete={deleteTask}
+          />
         ))}
       </Stack>
     </Box>

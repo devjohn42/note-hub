@@ -7,13 +7,24 @@ type TaskProps = {
   index: number;
   task: TaskModel;
   onUpdate: (id: TaskModel['id'], updateTask: TaskModel) => void;
+  onDelete: (id: TaskModel['id']) => void;
 };
 
-const Task = ({ index, task, onUpdate: handleUpdate }: TaskProps) => {
+const Task = ({
+  index,
+  task,
+  onUpdate: handleUpdate,
+  onDelete: handleDelete,
+}: TaskProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const newTitle = e.target.value;
     handleUpdate(task.id, { ...task, title: newTitle });
+  };
+
+  const handleDeleteTask = () => {
+    handleDelete(task.id);
   };
 
   useEffect(() => {
@@ -50,6 +61,7 @@ const Task = ({ index, task, onUpdate: handleUpdate }: TaskProps) => {
         icon={<DeleteIcon />}
         opacity={0}
         _groupHover={{ opacity: 1 }}
+        onClick={handleDeleteTask}
       />
       <Textarea
         ref={textareaRef}
