@@ -4,3 +4,7 @@ export enum ColumnType {
   COMPLETED = 'Completed',
   BLOCKED = 'Blocked',
 }
+
+export enum ItemType {
+  Task = 'Task',
+}

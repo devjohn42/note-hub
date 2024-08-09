@@ -2,6 +2,7 @@ import { DeleteIcon } from '@chakra-ui/icons';
 import { Box, IconButton, Textarea, useColorModeValue } from '@chakra-ui/react';
 import { TaskModel } from '../utils/models';
 import { useEffect, useRef, ChangeEvent } from 'react';
+import { useTaskDroppable } from '../hooks/useTaskDroppable';
 
 type TaskProps = {
   index: number;
@@ -17,6 +18,10 @@ const Task = ({
   onDelete: handleDelete,
 }: TaskProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { ref, isDragging } = useTaskDroppable<HTMLDivElement>({
+    task,
+    index,
+  });
 
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const newTitle = e.target.value;
@@ -35,6 +40,7 @@ const Task = ({
   }, [task.title]);
   return (
     <Box
+      ref={ref}
       as="div"
       role="group"
       position="relative"
@@ -48,6 +54,7 @@ const Task = ({
       boxShadow="xl"
       cursor="grab"
       bgColor={task.color}
+      opacity={isDragging ? 0.5 : 1}
     >
       <IconButton
         position="absolute"
