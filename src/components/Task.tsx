@@ -48,7 +48,7 @@ const Task = ({ index, task }: TaskProps) => {
       />
       <Textarea
         ref={textareaRef}
-        value={task.title}
+        defaultValue={task.title}
         fontWeight="semibold"
         cursor="inherit"
         border="none"

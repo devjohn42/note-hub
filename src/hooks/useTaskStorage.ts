@@ -12,23 +12,15 @@ const useTaskStorage = () => {
         id: uuidv4(),
         column: ColumnType.TO_DO,
         title: 'Task 1',
-        color: 'blue.300',
+        color: '#868686',
       },
     ],
-    In_Progress: [
+    'In Progress': [
       {
         id: uuidv4(),
         column: ColumnType.IN_PROGRESS,
         title: 'Task 2',
-        color: 'yellow.300',
-      },
-    ],
-    Blocked: [
-      {
-        id: uuidv4(),
-        column: ColumnType.BLOCKED,
-        title: 'Task 3',
-        color: 'red.300',
+        color: '#84CEE4',
       },
     ],
     Completed: [
@@ -36,7 +28,15 @@ const useTaskStorage = () => {
         id: uuidv4(),
         column: ColumnType.COMPLETED,
         title: 'Task 4',
-        color: 'green.300',
+        color: '#82C492',
+      },
+    ],
+    Blocked: [
+      {
+        id: uuidv4(),
+        column: ColumnType.BLOCKED,
+        title: 'Task 3',
+        color: '#C48289',
       },
     ],
   });

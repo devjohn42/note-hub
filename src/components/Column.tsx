@@ -8,27 +8,19 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { ColumnType } from '../utils/enums';
-import { TaskModel } from '../utils/models';
 import Task from './Task';
+import useColumnTasks from '../hooks/useColumnTask';
 
 const ColumnsColorScheme: Record<ColumnType, string> = {
   Todo: '#edf6f9',
-  In_Progress: '#84CEE4',
+  'In Progress': '#84CEE4',
   Completed: '#82C492',
   Blocked: '#C48289',
 };
 
-const mockTasks: TaskModel[] = [
-  {
-    id: '2',
-    title:
-      'Lorem Ipsum has been the industry`s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ',
-    column: ColumnType.IN_PROGRESS,
-    color: 'blue.300',
-  },
-];
-
 const Column = ({ column }: { column: ColumnType }) => {
+  const { tasks, addTask } = useColumnTasks(column);
+
   return (
     <Box>
       <Heading fontSize="md" mb={4} letterSpacing="wide">
@@ -36,7 +28,7 @@ const Column = ({ column }: { column: ColumnType }) => {
           px={2}
           py={1}
           rounded="lg"
-          bgColor={ColumnsColorScheme[column] + '30'}
+          bgColor={ColumnsColorScheme[column] + '20'}
           color={ColumnsColorScheme[column]}
         >
           {column}
@@ -53,6 +45,7 @@ const Column = ({ column }: { column: ColumnType }) => {
         colorScheme="black"
         aria-label="add-task"
         icon={<AddIcon />}
+        onClick={addTask}
       />
       <Stack
         direction="column"
@@ -65,7 +58,7 @@ const Column = ({ column }: { column: ColumnType }) => {
         boxShadow="md"
         overflow="auto"
       >
-        {mockTasks.map((task, index) => (
+        {tasks.map((task, index) => (
           <Task key={task.id} task={task} index={index} />
         ))}
       </Stack>
