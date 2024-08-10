@@ -1,9 +1,10 @@
-export const colors = ['#868686', '#84CEE4', '#82C492', '#C48289'];
+import { ColumnType } from './enums';
 
-export const pickRandomColor = () => {
-  const color = colors[Math.floor(Math.random() * colors.length)];
-
-  return color;
+export const columnColors: Record<ColumnType, string> = {
+  [ColumnType.TO_DO]: '#868686',
+  [ColumnType.IN_PROGRESS]: '#84CEE4',
+  [ColumnType.COMPLETED]: '#82C492',
+  [ColumnType.BLOCKED]: '#C48289',
 };
 
 export const replaceOnColumn = <T>(arr: T[], i: number, j: number): T[] => {

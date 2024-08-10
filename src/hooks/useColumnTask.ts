@@ -4,7 +4,7 @@ import { ColumnType } from '../utils/enums';
 import { TaskModel } from '../utils/models';
 import useTaskStorage from './useTaskStorage';
 import { MAX_PER_COLUMN } from '../utils/constants';
-import { pickRandomColor, replaceOnColumn } from '../utils/helpers';
+import { columnColors, replaceOnColumn } from '../utils/helpers';
 
 const useColumnTasks = (column: ColumnType) => {
   const [tasks, setTasks] = useTaskStorage();
@@ -24,7 +24,7 @@ const useColumnTasks = (column: ColumnType) => {
       const newColumnTask: TaskModel = {
         id: uuidv4(),
         title: `New ${column} task`,
-        color: pickRandomColor(),
+        color: columnColors[column],
         column,
       };
       return {

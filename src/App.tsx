@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Container maxWidth="container.xl" px={4} py={10}>
         <DndProvider backend={HTML5Backend}>
-          <SimpleGrid columns={{ base: 1, md: 4 }} spacing={{ base: 16, md: 4 }}>
+          <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} spacing={{ base: 16, md: 4 }}>
             <Column column={ColumnType.TO_DO} />
             <Column column={ColumnType.IN_PROGRESS} />
             <Column column={ColumnType.BLOCKED} />
