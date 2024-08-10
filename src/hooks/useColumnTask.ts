@@ -4,7 +4,7 @@ import { ColumnType } from '../utils/enums';
 import { TaskModel } from '../utils/models';
 import useTaskStorage from './useTaskStorage';
 import { MAX_PER_COLUMN } from '../utils/constants';
-import { pickRandomColor } from '../utils/helpers';
+import { pickRandomColor, replaceOnColumn } from '../utils/helpers';
 
 const useColumnTasks = (column: ColumnType) => {
   const [tasks, setTasks] = useTaskStorage();
@@ -89,12 +89,29 @@ const useColumnTasks = (column: ColumnType) => {
     [column, setTasks],
   );
 
+  const replaceTasks = useCallback(
+    (i: number, j: number) => {
+      console.info(`Swapping task ${i} with ${j} in ${column} column`);
+
+      setTasks((allTasks) => {
+        const columnTasks = allTasks[column];
+
+        return {
+          ...allTasks,
+          [column]: replaceOnColumn(columnTasks, i, j),
+        };
+      });
+    },
+    [column, setTasks],
+  );
+
   return {
     tasks: tasks[column],
     addTask,
     updateTask,
     deleteTask,
     dropTask,
+    replaceTasks,
   };
 };
 
