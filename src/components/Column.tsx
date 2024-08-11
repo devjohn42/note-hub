@@ -16,6 +16,7 @@ const ColumnsColorScheme: Record<ColumnType, string> = {
   Todo: '#edf6f9',
   'In Progress': '#84CEE4',
   Completed: '#82C492',
+  Paused: '#868FE4',
   Blocked: '#C48289',
 };
 

@@ -9,13 +9,17 @@ function App() {
   return (
     <>
       <Header />
-      <Container maxWidth="container.xl" px={4} py={10}>
+      <Container maxWidth={{ base: '90%' }} px={4} py={10}>
         <DndProvider backend={HTML5Backend}>
-          <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} spacing={{ base: 16, md: 4 }}>
+          <SimpleGrid
+            columns={{ base: 1, md: 2, xl: 5 }}
+            spacing={{ base: 8, md: 6, xl: 3 }}
+          >
             <Column column={ColumnType.TO_DO} />
             <Column column={ColumnType.IN_PROGRESS} />
-            <Column column={ColumnType.BLOCKED} />
             <Column column={ColumnType.COMPLETED} />
+            <Column column={ColumnType.PAUSED} />
+            <Column column={ColumnType.BLOCKED} />
           </SimpleGrid>
         </DndProvider>
       </Container>
