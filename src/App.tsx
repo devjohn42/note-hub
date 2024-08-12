@@ -17,8 +17,8 @@ function App() {
           >
             <Column column={ColumnType.TO_DO} />
             <Column column={ColumnType.IN_PROGRESS} />
-            <Column column={ColumnType.COMPLETED} />
             <Column column={ColumnType.PAUSED} />
+            <Column column={ColumnType.COMPLETED} />
             <Column column={ColumnType.BLOCKED} />
           </SimpleGrid>
         </DndProvider>

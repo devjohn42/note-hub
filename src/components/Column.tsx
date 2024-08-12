@@ -15,8 +15,8 @@ import useColumnDrop from '../hooks/useColumnDrop';
 const ColumnsColorScheme: Record<ColumnType, string> = {
   Todo: '#868686',
   'In Progress': '#84CEE4',
-  Completed: '#82C492',
   Paused: '#868FE4',
+  Completed: '#82C492',
   Blocked: '#C48289',
 };
 
@@ -39,20 +39,30 @@ const Column = ({ column }: { column: ColumnType }) => {
           {column}
         </Badge>
       </Heading>
-      <IconButton
-        size="xs"
-        w="full"
-        color={'gray.400'}
-        bgColor={useColorModeValue('gray.50', 'gray.700')}
-        boxShadow={'sm'}
-        _hover={{ bgColor: useColorModeValue('gray.100', 'gray.600') }}
-        py={2}
-        variant="solid"
-        colorScheme="black"
-        aria-label="add-task"
-        icon={<AddIcon color={'gray.400'} />}
-        onClick={addTask}
-      />
+      {column === 'Todo' ? (
+        <IconButton
+          size="xs"
+          w="full"
+          color={'gray.400'}
+          bgColor={useColorModeValue('gray.50', 'gray.700')}
+          boxShadow={'sm'}
+          _hover={{ bgColor: useColorModeValue('gray.100', 'gray.600') }}
+          py={2}
+          variant="solid"
+          colorScheme="black"
+          aria-label="add-task"
+          icon={<AddIcon color={'gray.400'} />}
+          onClick={addTask}
+        />
+      ) : (
+        <IconButton
+          size="xs"
+          w="full"
+          variant="solid"
+          colorScheme="black"
+          aria-label="add-task"
+        />
+      )}
       <Stack
         ref={dropRef}
         direction="column"

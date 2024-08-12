@@ -23,7 +23,7 @@ const useColumnTasks = (column: ColumnType) => {
 
       const newColumnTask: TaskModel = {
         id: uuidv4(),
-        title: `New ${column} task`,
+        title: `New task`,
         color: columnColors[column],
         column,
       };
@@ -79,10 +79,16 @@ const useColumnTasks = (column: ColumnType) => {
 
         if (!movingTask) return allTasks;
 
+        const updatedTask = {
+          ...movingTask,
+          column,
+          color: columnColors[column],
+        };
+
         return {
           ...allTasks,
           [from]: fromColumnTasks.filter((task) => task.id !== id),
-          [column]: [{ ...movingTask, column }, ...toColumnTasks],
+          [column]: [updatedTask, ...toColumnTasks],
         };
       });
     },
