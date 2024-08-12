@@ -13,7 +13,7 @@ import useColumnTasks from '../hooks/useColumnTask';
 import useColumnDrop from '../hooks/useColumnDrop';
 
 const ColumnsColorScheme: Record<ColumnType, string> = {
-  Todo: '#edf6f9',
+  Todo: '#868686',
   'In Progress': '#84CEE4',
   Completed: '#82C492',
   Paused: '#868FE4',
@@ -42,14 +42,15 @@ const Column = ({ column }: { column: ColumnType }) => {
       <IconButton
         size="xs"
         w="full"
-        color={useColorModeValue('gray.500', 'gray.400')}
-        bgColor={useColorModeValue('gray.100', 'gray.700')}
-        _hover={{ bgColor: useColorModeValue('gray.200', 'gray.600') }}
+        color={'gray.400'}
+        bgColor={useColorModeValue('gray.50', 'gray.700')}
+        boxShadow={'sm'}
+        _hover={{ bgColor: useColorModeValue('gray.100', 'gray.600') }}
         py={2}
         variant="solid"
         colorScheme="black"
         aria-label="add-task"
-        icon={<AddIcon />}
+        icon={<AddIcon color={'gray.400'} />}
         onClick={addTask}
       />
       <Stack
